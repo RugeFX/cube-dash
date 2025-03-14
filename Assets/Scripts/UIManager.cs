@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public Image MyImage;
     public Slider MySlider;
+    public Button MyButton;
 
     public Sprite MySprite;
     // Start is called before the first frame update
