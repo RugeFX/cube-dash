@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MyImage.sprite = MySprite;
+        MyImage.sprite = MySprite;   
     }
 
     // Update is called once per frame
