@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public Button PlayButton;
     public Button QuitButton;
@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Cube");
     }
+
     private void HandleQuit()
     {
         Application.Quit();
@@ -25,11 +26,5 @@ public class UIManager : MonoBehaviour
     {
         PlayButton.onClick.AddListener(HandlePlay);
         QuitButton.onClick.AddListener(HandleQuit);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

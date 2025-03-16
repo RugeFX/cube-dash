@@ -4,21 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player_Movement : MonoBehaviour
+public class Player : MonoBehaviour
 {
-
+    public GameManager gameManager;
     public float speed = 5.0f;
     public float jump = 5.5f;
+    private bool isDead = false;
     private Rigidbody rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Restart1.onClick.AddListener(RestartGame);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDead) return;
+
         float moveVertical = rb.velocity.y;
         float moveHorizontal = rb.velocity.x;
 
@@ -47,25 +50,29 @@ public class Player_Movement : MonoBehaviour
         rb.velocity = new Vector3(moveHorizontal, moveVertical, speed);
     }
 
-    private void RestartGame()
+    private void GameOver()
     {
-        SceneManager.LoadScene("Cube");
+        Debug.Log("Game Over!");
+        isDead = true;
+        gameManager.GameOver();
+    }
+
+    private void Victory()
+    {
+        Debug.Log("Victory!");
+        isDead = true;
+        gameManager.Victory();
     }
 
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            RestartGame();
-        }
+            GameOver();
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider collider)
     {
-        RestartGame();
+        if (collider.gameObject.CompareTag("Finish"))
+            Victory();
     }
-
-    public Button Restart1, Restart2;
-
-
 }
